@@ -32,7 +32,7 @@ class ImageApi:
     @staticmethod
     def serialize(data, spacing, unit):
         img = sitk.GetImageFromArray(data)
-        img.SetSpacing(np.array(spacing, dtype=np.double))
+        # img.SetSpacing(np.array(spacing, dtype=np.double))
         img.SetMetaData('unit', unit)
         return img
 

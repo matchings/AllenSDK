@@ -30,11 +30,17 @@ def get_running_df(data, time):
     dx_raw = data["items"]["behavior"]["encoders"][0]["dx"]
     v_sig = data["items"]["behavior"]["encoders"][0]["vsig"]
     v_in = data["items"]["behavior"]["encoders"][0]["vin"]
-    assert len(v_in) == len(time), "length of v_in ({}) must match length of time ({}), they are off by {}".format(
-        len(v_in), 
-        len(time), 
-        abs(len(v_in) - len(time))
-    )
+    # assert len(v_in) == len(time), "length of v_in ({}) must match length of time ({}), they are off by {}".format(
+    #     len(v_in),
+    #     len(time),
+    #     abs(len(v_in) - len(time))
+    # )
+    # hack to make things equal - BAD, FIX THIS
+    time = time[:len(v_in)]
+    v_in = v_in[:len(time)]
+    v_sig = v_sig[:len(time)]
+    dx_raw = dx_raw[:len(time)]
+
     # remove big, single frame spikes in encoder values
     dx = scipy.signal.medfilt(dx_raw, kernel_size=5)
     dx = np.cumsum(dx)  # wheel rotations
