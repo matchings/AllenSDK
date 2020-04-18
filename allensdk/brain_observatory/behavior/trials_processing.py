@@ -299,7 +299,7 @@ def get_trial_image_names(trial, stimuli):
 
 
 def get_trials(data, licks_df, rewards_df, stimulus_presentations_df, rebase):
-    assert rewards_df.index.name == 'timestamps'
+    # assert rewards_df.index.name == 'timestamps'
     stimuli = data["items"]["behavior"]["stimuli"]
     trial_log = data["items"]["behavior"]["trial_log"]
 
